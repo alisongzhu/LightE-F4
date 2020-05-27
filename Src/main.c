@@ -119,7 +119,6 @@ int main(void)
 
   /* Call init function for freertos objects (in freertos.c) */
   MX_FREERTOS_Init();
-
   /* Start scheduler */
   osKernelStart();
   
