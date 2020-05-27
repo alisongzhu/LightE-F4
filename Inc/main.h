@@ -65,8 +65,6 @@ uint8_t LED(uint8_t temp1,uint8_t temp2,uint8_t temp3);
 #define LED1_GPIO_Port GPIOF
 #define ETH_RST_Pin GPIO_PIN_3
 #define ETH_RST_GPIO_Port GPIOD
-#define RMII_TX_EN_Pin GPIO_PIN_11
-#define RMII_TX_EN_GPIO_Port GPIOG
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

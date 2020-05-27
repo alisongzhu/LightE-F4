@@ -47,6 +47,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 osThreadId StartTaskHandle;
+osThreadId EthTaskHandle;
 QueueHandle_t Test_Queue;
 
 char Test_RX[50];
@@ -56,6 +57,7 @@ osThreadId defaultTaskHandle;
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 void StartTask(void *pvParameters);   //初始化任务
+void ETHTask(void const * argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -92,13 +94,16 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 1024);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   osThreadDef(startTask, StartTask, osPriorityNormal, 1, 1024);
   StartTaskHandle = osThreadCreate(osThread(startTask), NULL);
+
+  osThreadDef(EthTask, ETHTask, osPriorityNormal, 2, 4048);
+  EthTaskHandle = osThreadCreate(osThread(EthTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
 }
@@ -113,7 +118,7 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void const * argument)
 {
   /* init code for LWIP */
-//  MX_LWIP_Init();
+  MX_LWIP_Init();
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
@@ -151,6 +156,20 @@ void StartTask(void *pvParameters)
 //    printf("未找到匹配的函数!\r\n");
   }
   /* USER CODE END StartDefaultTask */
+}
+
+
+
+void ETHTask(void const * argument)
+{
+  /* USER CODE BEGIN taskTcpEcho */
+
+
+  for (;;) {
+   HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
+   osDelay(1000);
+ }
+  /* USER CODE END taskTcpEcho */
 }
 /* USER CODE END Application */
 

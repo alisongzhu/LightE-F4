@@ -170,6 +170,7 @@ void DebugMon_Handler(void)
   * @brief This function handles USART1 global interrupt.
   */
 
+
 /**
   * @brief This function handles USART2 global interrupt.
   */

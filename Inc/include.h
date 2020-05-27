@@ -25,6 +25,21 @@
 #include "usmart.h"
 #include "delay.h"
 #include "queue.h"
+#include "err.h"
+
+
+
+#include "lwip/api.h"
+#include "lwip/memp.h"
+
+#include "lwip/ip.h"
+#include "lwip/raw.h"
+#include "lwip/udp.h"
+#include "lwip/priv/api_msg.h"
+#include "lwip/priv/tcp_priv.h"
+#include "lwip/priv/tcpip_priv.h"
+
+#include "lwip/opt.h"
 
 extern QueueHandle_t Test_Queue;
 #endif /* INCLUDE_H_ */
