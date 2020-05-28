@@ -128,7 +128,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     HAL_NVIC_SetPriority(USART1_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(USART1_IRQn);
   /* USER CODE BEGIN USART1_MspInit 1 */
-
+    __HAL_UART_ENABLE_IT(&huart1,UART_IT_IDLE);
   /* USER CODE END USART1_MspInit 1 */
   }
   else if(uartHandle->Instance==USART2)
@@ -352,7 +352,7 @@ void USAR_UART_IDLECallback(UART_HandleTypeDef *huart)
 		 //就向队列发送接收到的数据
 		if((USART_RX_STA&0x8000)&&(Test_Queue!=NULL))
 		{
-			for(int i=0;i<data_length-1;i++)
+			for(int i=0;i<data_length-2;i++)
 			{
 				xQueueSendFromISR(Test_Queue,&USART_RX_BUF[i],&xHigherPriorityTaskWoken);//向队列中发送数据
 			}

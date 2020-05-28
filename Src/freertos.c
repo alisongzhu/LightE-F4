@@ -94,7 +94,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 1024);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -144,15 +144,13 @@ void StartTask(void *pvParameters)
 //    Fft_Harmonic_Exec();
     HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
 
-
     if(Test_Queue!=NULL)
 	   {
-		   if(xQueueReceive(Test_Queue,&Test_RX,portMAX_DELAY))//请求消息Key_Queue
+		   if(xQueueReceive(Test_Queue,&Test_RX,0))//请求消息Key_Queue
 		   {
 	         HAL_UART_Transmit(&huart1, (uint8_t*)Test_RX, 50,1000);
 		   }
 	   }
-
 //    printf("未找到匹配的函数!\r\n");
   }
   /* USER CODE END StartDefaultTask */
@@ -163,8 +161,6 @@ void StartTask(void *pvParameters)
 void ETHTask(void const * argument)
 {
   /* USER CODE BEGIN taskTcpEcho */
-
-
   for (;;) {
    HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
    osDelay(1000);
