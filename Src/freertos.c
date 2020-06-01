@@ -162,7 +162,7 @@ void ETHTask(void const * argument)
 {
   /* USER CODE BEGIN taskTcpEcho */
   for (;;) {
-   HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
+//   HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
    osDelay(1000);
  }
   /* USER CODE END taskTcpEcho */
