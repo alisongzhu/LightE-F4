@@ -114,6 +114,7 @@ int main(void)
   fnDl645Fft_init();
   delay_init();
 
+
 //  HAL_UART_Receive_IT(&huart1, (uint8_t *)aRxBuffer, RXBUFFERSIZE);//该函数会开启接收中断：标志位UART_IT_RXNE，并且设置接收缓冲以及接收缓冲接收最大数据量
   /* USER CODE END 2 */
 

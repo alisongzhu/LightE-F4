@@ -102,7 +102,7 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(startTask, StartTask, osPriorityNormal, 1, 1024);
   StartTaskHandle = osThreadCreate(osThread(startTask), NULL);
 
-  osThreadDef(EthTask, ETHTask, osPriorityNormal, 2, 4048);
+  osThreadDef(EthTask, ETHTask, osPriorityNormal, 2, 8192);
   EthTaskHandle = osThreadCreate(osThread(EthTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
@@ -119,6 +119,7 @@ void StartDefaultTask(void const * argument)
 {
   /* init code for LWIP */
   MX_LWIP_Init();
+  lwip_test_init();
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
@@ -161,8 +162,12 @@ void StartTask(void *pvParameters)
 void ETHTask(void const * argument)
 {
   /* USER CODE BEGIN taskTcpEcho */
+
+
   for (;;) {
 //   HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
+//   lwip_periodic_handle();
+//   lwip_test_init();
    osDelay(1000);
  }
   /* USER CODE END taskTcpEcho */

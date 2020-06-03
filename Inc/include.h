@@ -27,7 +27,7 @@
 #include "queue.h"
 #include "err.h"
 
-
+#include "malloc.h"
 
 #include "lwip/api.h"
 #include "lwip/memp.h"
@@ -40,6 +40,9 @@
 #include "lwip/priv/tcpip_priv.h"
 
 #include "lwip/opt.h"
+#include "udp.h"
+#include "udp_test.h"
+
 
 extern QueueHandle_t Test_Queue;
 #endif /* INCLUDE_H_ */
