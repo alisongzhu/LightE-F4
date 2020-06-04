@@ -47,6 +47,8 @@
 #include "udp.h"
 #include "udp_test.h"
 #include "tcp_server_test.h"
+#include "tcp_client_test.h"
+
 
 extern QueueHandle_t Test_Queue;
 #endif /* INCLUDE_H_ */

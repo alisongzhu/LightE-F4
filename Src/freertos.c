@@ -121,6 +121,7 @@ void StartDefaultTask(void const * argument)
   MX_LWIP_Init();
   lwip_test_init();
   lwip_tcp_server_test_init();
+  lwip_tcp_client_init();
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
