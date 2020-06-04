@@ -19,13 +19,16 @@ u8 lwip_test_init(void)
 		return 1;
 	}else
 	{
-
-		if(udp_bind(pcb, IP_ADDR_ANY, 8089) == ERR_OK ) // 为本地IP绑定端口，IP_ADDR_ANY为0，其实说明使用本地IP地址，推荐优先使用。因为DHCP情况下，我们是无法事先知道IP的。
+		IP4_ADDR(&remote_ip,192, 168, 1, 100);// 设置目标IP及端口
+		if(udp_connect(pcb, &remote_ip, 8080) == ERR_OK ) // 连接到指定的IP地址和端口
 		{
-			udp_recv(pcb, udp_test_recv, NULL);     // 注册报文处理回调
-			printf("local_port %d\r\n", pcb->local_port);
+			if(udp_bind(pcb, IP_ADDR_ANY, 8080) == ERR_OK ) // 为本地IP绑定端口，IP_ADDR_ANY为0，其实说明使用本地IP地址，推荐优先使用。因为DHCP情况下，我们是无法事先知道IP的。
+			{
+				udp_recv(pcb, udp_test_recv, NULL); // 注册报文处理回调
+				printf("local_port %d\r\n", pcb->local_port);
+			}
 		}else
-			return 1;
+		return 1;
 	}
 	return 0;
 }

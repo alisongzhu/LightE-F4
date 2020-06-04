@@ -35,14 +35,18 @@
 #include "lwip/ip.h"
 #include "lwip/raw.h"
 #include "lwip/udp.h"
+#include "lwip/tcp.h"
 #include "lwip/priv/api_msg.h"
 #include "lwip/priv/tcp_priv.h"
 #include "lwip/priv/tcpip_priv.h"
+#include <lwip/sockets.h>
+#include <lwip/err.h>
+#include <lwip/sys.h>
 
 #include "lwip/opt.h"
 #include "udp.h"
 #include "udp_test.h"
-
+#include "tcp_server_test.h"
 
 extern QueueHandle_t Test_Queue;
 #endif /* INCLUDE_H_ */
