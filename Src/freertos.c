@@ -122,6 +122,7 @@ void StartDefaultTask(void const * argument)
   lwip_test_init();
   lwip_tcp_server_test_init();
   lwip_tcp_client_init();
+  httpd_init();
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
